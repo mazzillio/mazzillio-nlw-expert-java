@@ -1,4 +1,4 @@
-package br.com.mazzillio.Certification_NlwExpert.students.entities;
+package br.com.mazzillio.Certification_NlwExpert.questions.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,26 +10,26 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Entity(name = "students")
-public class Student {
+@Entity(name = "questions")
+public class Question {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @Column(length = 50)
+    private String technology;
 
-    @OneToMany(mappedBy = "student")
-    private List<Certification> certifications;
-
-    @OneToMany(mappedBy = "student")
-    private List<AnswerCertification> answerCertifications;
+    private String description;
 
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @OneToMany
+    @JoinColumn(name = "question_id")
+    private List<Alternatives> alternatives;
 }
