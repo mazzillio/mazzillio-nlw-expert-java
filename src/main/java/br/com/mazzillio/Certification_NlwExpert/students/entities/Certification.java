@@ -1,5 +1,7 @@
 package br.com.mazzillio.Certification_NlwExpert.students.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Entity(name = "certifications")
+@Builder
 public class Certification {
 
     @Id
@@ -36,8 +39,9 @@ public class Certification {
     private Student student;
 
 
-    @OneToMany(mappedBy = "certification")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "certification")
     @Column(name = "answer_certification_id", insertable = false, updatable = false)
+    @JsonManagedReference
     private List<AnswerCertification> answersCertifications;
 
 }

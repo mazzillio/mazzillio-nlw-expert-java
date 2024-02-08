@@ -1,7 +1,9 @@
 package br.com.mazzillio.Certification_NlwExpert.students.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Entity(name = "answers_certifications_students")
 public class AnswerCertification {
 
@@ -46,6 +49,7 @@ public class AnswerCertification {
 
     @ManyToOne
     @JoinColumn(name = "certification_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Certification certification;
 
 }

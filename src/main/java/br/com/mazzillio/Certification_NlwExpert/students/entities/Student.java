@@ -1,7 +1,10 @@
 package br.com.mazzillio.Certification_NlwExpert.students.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Entity(name = "students")
 public class Student {
     @Id
@@ -23,10 +27,9 @@ public class Student {
     private String email;
 
     @OneToMany(mappedBy = "student")
+    @JsonBackReference
     private List<Certification> certifications;
 
-    @OneToMany(mappedBy = "student")
-    private List<AnswerCertification> answerCertifications;
 
     @CreationTimestamp
     @Column(name = "created_at")

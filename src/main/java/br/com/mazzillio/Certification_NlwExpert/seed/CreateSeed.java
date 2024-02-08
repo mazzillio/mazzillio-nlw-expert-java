@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.DriverManager;
 
 public class CreateSeed {
     private final JdbcTemplate jdbcTemplate;
